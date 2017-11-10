@@ -86,9 +86,9 @@
 
 	$bookings = array();
 	for ($i = 0; $i < $date_elms->length; $i++) {
-		$booking_time = $date_elms[$i]->getAttribute('value');
-		$elm = $xpath->query('../div[@id="apex_cal_data_grid_src"]', $date_elms[$i]);
-		$booking_details = trim($elm[0]->textContent);
+		$booking_time = $date_elms->item($i)->getAttribute('value');
+		$elm = $xpath->query('../div[@id="apex_cal_data_grid_src"]', $date_elms->item($i));
+		$booking_details = trim($elm->item(0)->textContent);
 		$bookings[] = array("time" => $booking_time, "desc" => $booking_details, "id" => "$bldg $room $booking_time");
 	}
 	$room_data['bookings'] = $bookings;
