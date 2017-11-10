@@ -36,4 +36,6 @@ For automatic builds, you need `@angular/cli` installed which can be
 done with `npm install -g @angular/cli`
 
 Run `ng build` to build the project. The build artifacts will be stored
-in the `dist/` directory. Use the `-prod` flag for a production build.
+in the `out/` directory. Use the `-prod` flag for a production build.
+
+To set a custom output folder, run `ng build --output-path=dist/`, for example.
