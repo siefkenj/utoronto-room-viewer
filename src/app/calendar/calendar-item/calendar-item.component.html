@@ -1,0 +1,6 @@
+<li class="booking conflict" *ngIf="booking">
+  {{booking.desc}}
+</li>
+<li class="booking" *ngIf="!booking">
+  <button (click)="selectReservation()">Reserve</button>
+</li>
