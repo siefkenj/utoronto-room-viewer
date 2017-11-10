@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   // Main application title
-  title = 'UToronto Room Viewer';
+  title = 'uToronto Room Viewer';
 }

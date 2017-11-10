@@ -1,0 +1,23 @@
+.nav {
+	display: flex;
+	flex-direction: row;
+	padding: 3px;
+	background: #002a5c;
+	color: white;
+}
+
+.nav > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.title {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 2px;
+	align-self: center;
+}
+.spacer {
+	flex: 1 auto;
+}
+
