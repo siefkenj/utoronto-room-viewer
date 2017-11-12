@@ -1,19 +1,23 @@
 <div class="search-form">
   <div class="form-item">
-    <label>
-      Date
-      <div>
-        <date-picker
+    <label for="datepicker">
+	<div class="label">
+	Date
+	</div>
+	<div class="labeled">
+        <date-picker name="datepicker"
           [(ngModel)]="date"
           [showClearButton]="false"
           (ngModelChange)="onDateChanged($event)"></date-picker>
-      </div>
+ 	</div>
     </label>
   </div>
   <div class="form-item">
     <label>
+	<div class="label">
       Filter by capacity?
-      <div>
+	</div>
+      <div class="labeled">
         <input type="checkbox" [(ngModel)]="filterByCapacity" (ngModelChange)="onCapacityChecked($event)"/>
       </div>
     </label>
@@ -35,8 +39,10 @@
   </div>
   <div class="form-item">
     <label>
+	    <div class="label">
       Building(s)
-      <div>
+      </div>
+      <div class="labeled">
         <ng-selectize
           [config]="buildingsConfig"
           placeholder="Select one or more buildings"
@@ -45,11 +51,14 @@
           (ngModelChange)="onBuildingsValueChanged($event)"></ng-selectize>
       </div>
     </label>
+    {{selectedBuildings}}
   </div>
   <div class="form-item">
     <label>
+	 <div class="label">
       Room(s)
-      <div>
+	 </div>
+      <div class="labeled">
         <ng-selectize
           [config]="roomsConfig"
           placeholder="Select rooms, or leave blank to choose all"
@@ -60,9 +69,9 @@
       </div>
     </label>
   </div>
-</div>
-<div>
-  <a routerLink="/search" [queryParams]="queryParams">Search</a>
+  <div>
+    <a routerLink="/search" [queryParams]="queryParams" class="navbutton searchbutton">Search</a>
+  </div>
 </div>
 <div *ngIf="hasActiveQuery">
   <calendar></calendar>
