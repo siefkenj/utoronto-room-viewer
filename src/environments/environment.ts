@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   bookingBaseUrl: "get_room_info.php",
+  roomsBaseUrl: "get_rooms.php",
   reservationUrl: "http://www.osm.utoronto.ca/booking_request",
   useHashRouting: true
 };

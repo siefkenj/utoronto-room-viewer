@@ -17,6 +17,9 @@ app-root {
 	display: flex;
 	flex-direction: column;
 }
+app-tools {
+	height: 100%;
+}
 
 .navbutton {
 	margin: 2px;

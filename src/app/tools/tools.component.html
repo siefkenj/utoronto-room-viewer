@@ -1,3 +1,11 @@
+<div class="body">
 <p>
-  tools works!
+Data about the size of each classroom is presaved and not loaded dynamically
+(because there isn't a fast way to get this data). Here you can manually
+redownload information about all rooms.
 </p>
+<a class="navbutton" (click)="onRoomDataClick()">Download Room Data</a>
+
+<div class="progressText" [hidden]="!inProgress">Processing... {{roomsLeft}} rooms left.</div>
+<textarea [(value)]="roomInfo"></textarea>
+</div>

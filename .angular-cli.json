@@ -11,7 +11,8 @@
         "assets",
         "favicon.ico",
         "web.config",
-	"get_room_info.php"
+	"get_room_info.php",
+	"get_rooms.php"
       ],
       "index": "index.html",
       "main": "main.ts",
