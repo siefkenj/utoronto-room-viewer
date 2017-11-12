@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Building } from '../models/building';
 import { BuildingService } from '../services/building.service';
@@ -35,7 +36,7 @@ export class SearchComponent implements OnInit {
     valueField: 'name',
     searchField: ['name', 'desc'],
     maxItems: null,
-    plugins: ['remove_button']
+    plugins: ['remove_button'],
   };
   selectedBuildings = [];
   
@@ -54,16 +55,30 @@ export class SearchComponent implements OnInit {
   // Consolidated search terms
   queryParams: QueryParams;
   
+  // Calendar display trigger
+  hasActiveQuery = false;
+  
   // Class functions
   
   constructor(
     private buildingService: BuildingService,
-    private roomService: RoomService) { }
+    private roomService: RoomService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.buildingService.getBuildings().then(bs => this.buildings = bs);
     this.roomService.getRooms().then(rs => this.allRooms = rs);
     this.updateQueryParams();
+    
+    // Retrieve the query parameters
+    this.route.queryParamMap.subscribe(pmap => {
+      if (pmap.has('date') && pmap.has('buildings') && pmap.get('buildings'))
+      {
+        this.hasActiveQuery = true;
+      } else {
+        this.hasActiveQuery = false;
+      }
+    });
   }
   
   // Search form value change events
