@@ -45,7 +45,7 @@
 		$room_data['photo'] = $tld . $elms->item(0)->getAttribute('src');
 
 		// the capacity and types
-		$elms = $xpath->query('//div[@id="columnright"]/div[1]')[0];
+		$elms = $xpath->query('//div[@id="columnright"]/div[1]')->item(0);
 		foreach ($elms->getElementsByTagName('tr') as $child) {
 			$cells = $child->getElementsByTagName('td');
 			if ($cells->length == 2) {
