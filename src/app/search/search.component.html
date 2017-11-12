@@ -62,5 +62,8 @@
   </div>
 </div>
 <div>
-  <a routerLink="/calendar" [queryParams]="queryParams">Search</a>
+  <a routerLink="/search" [queryParams]="queryParams">Search</a>
+</div>
+<div *ngIf="hasActiveQuery">
+  <calendar></calendar>
 </div>

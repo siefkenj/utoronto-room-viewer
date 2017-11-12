@@ -13,7 +13,7 @@ import { RoomService } from './services/room.service';
 const routes = [
   { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'search', loadChildren: 'app/search/search.module#SearchModule' },
-  { path: 'calendar', loadChildren: 'app/calendar/calendar.module#CalendarModule' }
+  { path: 'calendar', redirectTo: '/calendar' }
 ];
 
 @NgModule({
