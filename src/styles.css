@@ -33,3 +33,6 @@ app-root {
 .navbutton:hover {
 	background: rgb(54, 158, 248);
 }
+.navbutton.active {
+	background: rgb(76, 175,80);
+}

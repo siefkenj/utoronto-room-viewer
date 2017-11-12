@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     valueField: 'name',
     searchField: ['name', 'desc'],
     maxItems: null,
-    plugins: ['remove_button']
+    plugins: ['remove_button'],
   };
   selectedBuildings = [];
   
