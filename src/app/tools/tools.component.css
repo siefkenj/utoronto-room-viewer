@@ -1,0 +1,13 @@
+.body {
+	margin-left: 15px;
+	margin-right: 15px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+textarea {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5pt;
+	flex: 1 auto;
+}

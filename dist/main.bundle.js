@@ -50,7 +50,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav\">\n  <div class=\"title\">{{title}}</div>\n  <div class=\"spacer\"></div>\n  <a class=\"navbutton\">Room Viewer</a>\n  <a class=\"navbutton\">Tools</a>\n</div>\n<div class=\"body\">\n<router-outlet></router-outlet>\n</div>\n<div class=\"footer\">\n</div>\n"
+module.exports = "<div class=\"nav\">\n  <div class=\"title\">{{title}}</div>\n  <div class=\"spacer\"></div>\n  <a class=\"navbutton\" routerLink=\"/search\" routerLinkActive=\"active\">Room Viewer</a>\n  <a class=\"navbutton\" routerLink=\"/tools\" routerLinkActive=\"active\">Tools</a>\n</div>\n<div class=\"body\">\n<router-outlet></router-outlet>\n</div>\n<div class=\"footer\">\n</div>\n"
 
 /***/ }),
 
@@ -101,15 +101,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
+var http_2 = __webpack_require__("../../../common/@angular/common/http.es5.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var booking_service_1 = __webpack_require__("../../../../../src/app/services/booking.service.ts");
 var building_service_1 = __webpack_require__("../../../../../src/app/services/building.service.ts");
 var room_service_1 = __webpack_require__("../../../../../src/app/services/room.service.ts");
+var tools_component_1 = __webpack_require__("../../../../../src/app/tools/tools.component.ts");
 var routes = [
     { path: '', redirectTo: '/search', pathMatch: 'full' },
     { path: 'search', loadChildren: 'app/search/search.module#SearchModule' },
+    { path: 'tools', component: tools_component_1.ToolsComponent },
     { path: 'calendar', loadChildren: 'app/calendar/calendar.module#CalendarModule' }
 ];
 var AppModule = /** @class */ (function () {
@@ -118,11 +121,13 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                tools_component_1.ToolsComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
+                http_2.HttpClientModule,
                 router_1.RouterModule.forRoot(routes, { useHash: environment_1.environment['useHashRouting'] || false })
             ],
             providers: [
@@ -6485,6 +6490,109 @@ exports.RoomService = RoomService;
 
 /***/ }),
 
+/***/ "../../../../../src/app/tools/tools.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".body {\n\tmargin-left: 15px;\n\tmargin-right: 15px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\theight: 100%;\n}\ntextarea {\n\tdisplay: block;\n\tmargin-top: 5px;\n\tmargin-bottom: 5pt;\n\t-webkit-box-flex: 1;\n\t    -ms-flex: 1 auto;\n\t        flex: 1 auto;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/tools/tools.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"body\">\n<p>\nData about the size of each classroom is presaved and not loaded dynamically\n(because there isn't a fast way to get this data). Here you can manually\nredownload information about all rooms.\n</p>\n<a class=\"navbutton\" (click)=\"onRoomDataClick()\">Download Room Data</a>\n\n<div class=\"progressText\" [hidden]=\"!inProgress\">Processing... {{roomsLeft}} rooms left.</div>\n<textarea [(value)]=\"roomInfo\"></textarea>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/tools/tools.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var http_1 = __webpack_require__("../../../common/@angular/common/http.es5.js");
+var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
+var ToolsComponent = /** @class */ (function () {
+    function ToolsComponent(http) {
+        this.http = http;
+        this.roomInfo = "";
+        this.roomsLeft = "";
+        this.inProgress = false;
+    }
+    ToolsComponent.prototype.ngOnInit = function () { };
+    ToolsComponent.prototype.onRoomDataClick = function () {
+        var _this = this;
+        this.inProgress = true;
+        var allRooms = {};
+        var roomsLeft = 0;
+        this.http.get(environment_1.environment['roomsBaseUrl']).subscribe(function (data) {
+            allRooms = data;
+            _this.roomInfo = JSON.stringify(allRooms, null, 4);
+            getRoomInfo();
+        });
+        var getRoomInfo = function () {
+            roomsLeft = allRooms['rooms'].length;
+            var wrapup = function () {
+                roomsLeft -= 1;
+                _this.roomsLeft = roomsLeft;
+                if (roomsLeft <= 0) {
+                    _this.inProgress = false;
+                }
+            };
+            var _loop_1 = function (room_l) {
+                var bldg = room_l.bldg, room = room_l.room;
+                _this.http.get(environment_1.environment['bookingBaseUrl'] + "?room=" + room + "&bldg=" + bldg).subscribe(function (data) {
+                    Object.assign(room_l, data);
+                    _this.roomInfo = JSON.stringify(allRooms, null, 4);
+                    wrapup();
+                }, function (err) {
+                    wrapup();
+                });
+            };
+            for (var _i = 0, _a = allRooms['rooms']; _i < _a.length; _i++) {
+                var room_l = _a[_i];
+                _loop_1(room_l);
+            }
+        };
+    };
+    ToolsComponent = __decorate([
+        core_1.Component({
+            selector: 'app-tools',
+            template: __webpack_require__("../../../../../src/app/tools/tools.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/tools/tools.component.css")],
+            encapsulation: core_1.ViewEncapsulation.None
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof http_1.HttpClient !== "undefined" && http_1.HttpClient) === "function" && _a || Object])
+    ], ToolsComponent);
+    return ToolsComponent;
+    var _a;
+}());
+exports.ToolsComponent = ToolsComponent;
+//# sourceMappingURL=tools.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/environments/environment.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6498,6 +6606,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.environment = {
     production: false,
     bookingBaseUrl: "get_room_info.php",
+    roomsBaseUrl: "get_rooms.php",
     reservationUrl: "http://www.osm.utoronto.ca/booking_request",
     useHashRouting: true
 };
