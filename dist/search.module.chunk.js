@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".search-form {\n\tpadding: 4px;\n}\n.search-form .form-item {\n  width: 100%;\n  padding: 4px 10px;\n}\n\n.search-form .form-item .input-range {\n  padding-top: 25px;\n  padding-bottom: 10px;\n}\n\nlabel {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-wrap: wrap;\n\t    flex-wrap: wrap;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: colum;\n\t        flex-direction: colum;\n}\n.label {\n\tmin-width: 10em;\n}\n.labeled {\n\t-webkit-box-flex: 1;\n\t    -ms-flex: 1 auto;\n\t        flex: 1 auto;\n}\n.searchbutton {\n\tfloat: right;\n\tmargin-right: 20px;\n\tpadding-left: 30px;\n\tpadding-right: 30px;\n}\n", ""]);
+exports.push([module.i, ".search-form .form-item {\n  width: 100%;\n  padding: 4px 10px;\n}\n\n.search-form .form-item .input-range {\n  padding-top: 25px;\n  padding-bottom: 10px;\n}\n", ""]);
 
 // exports
 
@@ -21,15 +21,19 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"search-form\">\n  <div class=\"form-item\">\n    <label for=\"datepicker\">\n\t<div class=\"label\">\n\tDate\n\t</div>\n\t<div class=\"labeled\">\n        <date-picker name=\"datepicker\"\n          [(ngModel)]=\"date\"\n          [showClearButton]=\"false\"\n          (ngModelChange)=\"onDateChanged($event)\"></date-picker>\n \t</div>\n    </label>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t<div class=\"label\">\n      Filter by capacity?\n\t</div>\n      <div class=\"labeled\">\n        <input type=\"checkbox\" [(ngModel)]=\"filterByCapacity\" (ngModelChange)=\"onCapacityChecked($event)\"/>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\" [hidden]=\"!filterByCapacity\">\n\t  Capacity:\n    <div class=\"input-range\">\n      <nouislider\n        [config]=\"sliderConfig\"\n        [connect]=\"true\"\n        [min]=\"sliderMin\"\n        [max]=\"sliderMax\"\n        [step]=\"1\"\n        [tooltips]=\"true\"\n        [(ngModel)]=\"capacityRange\"\n        [disabled]=\"!filterByCapacity\"\n        (ngModelChange)=\"onCapacityRangeChanged($event)\"></nouislider>\n    </div>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t    <div class=\"label\">\n      Building(s)\n      </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"buildingsConfig\"\n          placeholder=\"Select one or more buildings\"\n          [options]=\"buildings\"\n          [(ngModel)]=\"selectedBuildings\"\n          (ngModelChange)=\"onBuildingsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n    {{selectedBuildings}}\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t <div class=\"label\">\n      Room(s)\n\t </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"roomsConfig\"\n          placeholder=\"Select rooms, or leave blank to choose all\"\n          [enabled]=\"selectedBuildings.length\"\n          [options]=\"filteredRooms\"\n          [(ngModel)]=\"selectedRooms\"\n          (ngModelChange)=\"onRoomsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n  </div>\n <div>\n  <a routerLink=\"/calendar\" [queryParams]=\"queryParams\" class=\"navbutton searchbutton\">Search</a>\n </div>\n</div>\n"
+module.exports = "<div class=\"search-form\">\n  <div class=\"form-item\">\n    <label>\n      Date\n      <div>\n        <date-picker\n          [(ngModel)]=\"date\"\n          [showClearButton]=\"false\"\n          (ngModelChange)=\"onDateChanged($event)\"></date-picker>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\">\n    <label>\n      Filter by capacity?\n      <div>\n        <input type=\"checkbox\" [(ngModel)]=\"filterByCapacity\" (ngModelChange)=\"onCapacityChecked($event)\"/>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\" [hidden]=\"!filterByCapacity\">\n\t  Capacity:\n    <div class=\"input-range\">\n      <nouislider\n        [config]=\"sliderConfig\"\n        [connect]=\"true\"\n        [min]=\"sliderMin\"\n        [max]=\"sliderMax\"\n        [step]=\"1\"\n        [tooltips]=\"true\"\n        [(ngModel)]=\"capacityRange\"\n        [disabled]=\"!filterByCapacity\"\n        (ngModelChange)=\"onCapacityRangeChanged($event)\"></nouislider>\n    </div>\n  </div>\n  <div class=\"form-item\">\n    <label>\n      Building(s)\n      <div>\n        <ng-selectize\n          [config]=\"buildingsConfig\"\n          placeholder=\"Select one or more buildings\"\n          [options]=\"buildings\"\n          [(ngModel)]=\"selectedBuildings\"\n          (ngModelChange)=\"onBuildingsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\">\n    <label>\n      Room(s)\n      <div>\n        <ng-selectize\n          [config]=\"roomsConfig\"\n          placeholder=\"Select rooms, or leave blank to choose all\"\n          [enabled]=\"selectedBuildings.length\"\n          [options]=\"filteredRooms\"\n          [(ngModel)]=\"selectedRooms\"\n          (ngModelChange)=\"onRoomsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n  </div>\n</div>\n<div>\n  <a routerLink=\"/calendar\" [queryParams]=\"queryParams\">Search</a>\n</div>\n"
 
 /***/ }),
 
 /***/ "../../../../../src/app/search/search.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchComponent; });
+/* unused harmony export QueryParams */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_building_service__ = __webpack_require__("../../../../../src/app/services/building.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_room_service__ = __webpack_require__("../../../../../src/app/services/room.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -39,10 +43,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var building_service_1 = __webpack_require__("../../../../../src/app/services/building.service.ts");
-var room_service_1 = __webpack_require__("../../../../../src/app/services/room.service.ts");
+
+
+
 var SearchComponent = /** @class */ (function () {
     // Class functions
     function SearchComponent(buildingService, roomService) {
@@ -69,7 +72,7 @@ var SearchComponent = /** @class */ (function () {
             valueField: 'name',
             searchField: ['name', 'desc'],
             maxItems: null,
-            plugins: ['remove_button'],
+            plugins: ['remove_button']
         };
         this.selectedBuildings = [];
         // Room config options
@@ -146,17 +149,17 @@ var SearchComponent = /** @class */ (function () {
         return date.toString();
     };
     SearchComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'search',
             template: __webpack_require__("../../../../../src/app/search/search.component.html"),
             styles: [__webpack_require__("../../../../../src/app/search/search.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof building_service_1.BuildingService !== "undefined" && building_service_1.BuildingService) === "function" && _a || Object, typeof (_b = typeof room_service_1.RoomService !== "undefined" && room_service_1.RoomService) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_building_service__["a" /* BuildingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_building_service__["a" /* BuildingService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_room_service__["a" /* RoomService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_room_service__["a" /* RoomService */]) === "function" && _b || Object])
     ], SearchComponent);
     return SearchComponent;
     var _a, _b;
 }());
-exports.SearchComponent = SearchComponent;
+
 /**
  * Object to consolidate search terms, for use with a Search link
  */
@@ -165,56 +168,66 @@ var QueryParams = /** @class */ (function () {
     }
     return QueryParams;
 }());
-exports.QueryParams = QueryParams;
+
 //# sourceMappingURL=search.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/search/search.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchModule", function() { return SearchModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_component__ = __webpack_require__("../../../../../src/app/search/search.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular_io_datepicker__ = __webpack_require__("../../../../angular-io-datepicker/src/datepicker/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular_io_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular_io_datepicker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_nouislider__ = __webpack_require__("../../../../ng2-nouislider/src/nouislider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_nouislider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_nouislider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng_selectize__ = __webpack_require__("../../../../ng-selectize/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
-var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
-var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var search_component_1 = __webpack_require__("../../../../../src/app/search/search.component.ts");
-var angular_io_datepicker_1 = __webpack_require__("../../../../angular-io-datepicker/src/datepicker/index.js");
-var ng2_nouislider_1 = __webpack_require__("../../../../ng2-nouislider/src/nouislider.js");
-var ng_selectize_1 = __webpack_require__("../../../../ng-selectize/index.js");
+
+
+
+
+
+
+
+
 var routes = [
-    { path: '', component: search_component_1.SearchComponent }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_4__search_component__["a" /* SearchComponent */] }
 ];
 var SearchModule = /** @class */ (function () {
     function SearchModule() {
     }
     SearchModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                common_1.CommonModule,
-                forms_1.FormsModule,
-                angular_io_datepicker_1.DatePickerModule,
-                ng2_nouislider_1.NouisliderModule,
-                ng_selectize_1.NgSelectizeModule,
-                router_1.RouterModule.forChild(routes)
+                __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
+                __WEBPACK_IMPORTED_MODULE_5_angular_io_datepicker__["DatePickerModule"],
+                __WEBPACK_IMPORTED_MODULE_6_ng2_nouislider__["NouisliderModule"],
+                __WEBPACK_IMPORTED_MODULE_7_ng_selectize__["a" /* NgSelectizeModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forChild(routes)
             ],
             declarations: [
-                search_component_1.SearchComponent
+                __WEBPACK_IMPORTED_MODULE_4__search_component__["a" /* SearchComponent */]
             ],
             exports: []
         })
     ], SearchModule);
     return SearchModule;
 }());
-exports.SearchModule = SearchModule;
+
 //# sourceMappingURL=search.module.js.map
 
 /***/ }),
@@ -20106,11 +20119,10 @@ return hooks;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ng_selectize_module__ = __webpack_require__("../../../../ng-selectize/ng-selectize.module.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ng_selectize_component__ = __webpack_require__("../../../../ng-selectize/ng-selectize.component.js");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgSelectizeModule", function() { return __WEBPACK_IMPORTED_MODULE_0__ng_selectize_module__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgSelectizeComponent", function() { return __WEBPACK_IMPORTED_MODULE_1__ng_selectize_component__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ng_selectize_module__["a"]; });
+/* unused harmony reexport NgSelectizeComponent */
 
 
 
@@ -23958,7 +23970,7 @@ var DEFAULT_VALUE_ACCESSOR = {
  * @return {?}
  */
 function _isAndroid() {
-    var /** @type {?} */ userAgent = Object(__WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["ɵgetDOM"])() ? Object(__WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["ɵgetDOM"])().getUserAgent() : '';
+    var /** @type {?} */ userAgent = Object(__WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["c" /* ɵgetDOM */])() ? Object(__WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["c" /* ɵgetDOM */])().getUserAgent() : '';
     return /android (\d+)/.test(userAgent.toLowerCase());
 }
 /**

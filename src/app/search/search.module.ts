@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { CalendarModule } from 'app/calendar/calendar.module';
 import { SearchComponent } from './search.component';
 
 import { DatePickerModule } from 'angular-io-datepicker';
@@ -20,6 +21,7 @@ const routes = [
     DatePickerModule,
     NouisliderModule,
     NgSelectizeModule,
+    CalendarModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

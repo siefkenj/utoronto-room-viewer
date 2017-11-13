@@ -26,10 +26,12 @@ module.exports = "<li class=\"booking conflict\" *ngIf=\"booking\">\n  {{booking
 /***/ }),
 
 /***/ "../../../../../src/app/calendar/calendar-item/calendar-item.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_booking__ = __webpack_require__("../../../../../src/app/models/booking.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -39,12 +41,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var booking_1 = __webpack_require__("../../../../../src/app/models/booking.ts");
+
+
 var CalendarItemComponent = /** @class */ (function () {
     function CalendarItemComponent() {
-        this.selected = new core_1.EventEmitter();
+        this.selected = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
     CalendarItemComponent.prototype.ngOnInit = function () {
     };
@@ -55,19 +56,19 @@ var CalendarItemComponent = /** @class */ (function () {
         this.selected.emit(this.hour);
     };
     __decorate([
-        core_1.Input(),
-        __metadata("design:type", typeof (_a = typeof booking_1.Booking !== "undefined" && booking_1.Booking) === "function" && _a || Object)
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_booking__["a" /* Booking */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__models_booking__["a" /* Booking */]) === "function" && _a || Object)
     ], CalendarItemComponent.prototype, "booking", void 0);
     __decorate([
-        core_1.Input(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Number)
     ], CalendarItemComponent.prototype, "hour", void 0);
     __decorate([
-        core_1.Output(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         __metadata("design:type", Object)
     ], CalendarItemComponent.prototype, "selected", void 0);
     CalendarItemComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'calendar-item',
             template: __webpack_require__("../../../../../src/app/calendar/calendar-item/calendar-item.component.html"),
             styles: [__webpack_require__("../../../../../src/app/calendar/calendar-item/calendar-item.component.css")]
@@ -77,7 +78,7 @@ var CalendarItemComponent = /** @class */ (function () {
     return CalendarItemComponent;
     var _a;
 }());
-exports.CalendarItemComponent = CalendarItemComponent;
+
 //# sourceMappingURL=calendar-item.component.js.map
 
 /***/ }),
@@ -108,10 +109,14 @@ module.exports = "<div class=\"calendar-row\" *ngIf=\"room\">\n<div class=\"cale
 /***/ }),
 
 /***/ "../../../../../src/app/calendar/calendar-row/calendar-row.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarRowComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_booking_service__ = __webpack_require__("../../../../../src/app/services/booking.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_room__ = __webpack_require__("../../../../../src/app/models/room.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_reservation__ = __webpack_require__("../../../../../src/app/models/reservation.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -121,15 +126,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var booking_service_1 = __webpack_require__("../../../../../src/app/services/booking.service.ts");
-var room_1 = __webpack_require__("../../../../../src/app/models/room.ts");
-var reservation_1 = __webpack_require__("../../../../../src/app/models/reservation.ts");
+
+
+
+
 var CalendarRowComponent = /** @class */ (function () {
     function CalendarRowComponent(bookingService) {
         this.bookingService = bookingService;
-        this.reservationSelected = new core_1.EventEmitter();
+        this.reservationSelected = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         // An unordered list of Bookings for the input room and date
         this.bookings = [];
         // Determines if a 'Loading' message should be displayed
@@ -173,7 +177,7 @@ var CalendarRowComponent = /** @class */ (function () {
      * Wrap a selected hour in a Reservation, and emit as an output event
      */
     CalendarRowComponent.prototype.reserveSelection = function (hour) {
-        var reservation = new reservation_1.Reservation(this.room, this.date, hour);
+        var reservation = new __WEBPACK_IMPORTED_MODULE_3__models_reservation__["a" /* Reservation */](this.room, this.date, hour);
         this.reservationSelected.emit(reservation);
     };
     /**
@@ -186,33 +190,33 @@ var CalendarRowComponent = /** @class */ (function () {
         return "" + date.getUTCFullYear() + (date.getUTCMonth() + 1 < 10 ? "0" : "") + (date.getUTCMonth() + 1) + (date.getUTCDate() < 10 ? "0" : "") + date.getUTCDate();
     };
     __decorate([
-        core_1.Input(),
-        __metadata("design:type", typeof (_a = typeof room_1.Room !== "undefined" && room_1.Room) === "function" && _a || Object)
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__models_room__["a" /* Room */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__models_room__["a" /* Room */]) === "function" && _a || Object)
     ], CalendarRowComponent.prototype, "room", void 0);
     __decorate([
-        core_1.Input(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Object)
     ], CalendarRowComponent.prototype, "date", void 0);
     __decorate([
-        core_1.Input(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Array)
     ], CalendarRowComponent.prototype, "hours", void 0);
     __decorate([
-        core_1.Output(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         __metadata("design:type", Object)
     ], CalendarRowComponent.prototype, "reservationSelected", void 0);
     CalendarRowComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'calendar-row',
             template: __webpack_require__("../../../../../src/app/calendar/calendar-row/calendar-row.component.html"),
             styles: [__webpack_require__("../../../../../src/app/calendar/calendar-row/calendar-row.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof booking_service_1.BookingService !== "undefined" && booking_service_1.BookingService) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_booking_service__["a" /* BookingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_booking_service__["a" /* BookingService */]) === "function" && _b || Object])
     ], CalendarRowComponent);
     return CalendarRowComponent;
     var _a, _b;
 }());
-exports.CalendarRowComponent = CalendarRowComponent;
+
 //# sourceMappingURL=calendar-row.component.js.map
 
 /***/ }),
@@ -243,10 +247,14 @@ module.exports = "<div class=\"filter-notes\">\n  <div class=\"filter-header\">S
 /***/ }),
 
 /***/ "../../../../../src/app/calendar/calendar.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_room_service__ = __webpack_require__("../../../../../src/app/services/room.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -256,11 +264,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
-var room_service_1 = __webpack_require__("../../../../../src/app/services/room.service.ts");
+
+
+
+
 var CalendarComponent = /** @class */ (function () {
     function CalendarComponent(route, roomService) {
         this.route = route;
@@ -289,7 +296,7 @@ var CalendarComponent = /** @class */ (function () {
      * Send user to room reservation page
      */
     CalendarComponent.prototype.selectReservation = function (reservation) {
-        window.open(environment_1.environment.reservationUrl);
+        window.open(__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].reservationUrl);
     };
     /**
      * Extract the query parameters for displaying the list of Search Options
@@ -323,89 +330,94 @@ var CalendarComponent = /** @class */ (function () {
         return value;
     };
     CalendarComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'calendar',
             template: __webpack_require__("../../../../../src/app/calendar/calendar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/calendar/calendar.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _a || Object, typeof (_b = typeof room_service_1.RoomService !== "undefined" && room_service_1.RoomService) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_room_service__["a" /* RoomService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_room_service__["a" /* RoomService */]) === "function" && _b || Object])
     ], CalendarComponent);
     return CalendarComponent;
     var _a, _b;
 }());
-exports.CalendarComponent = CalendarComponent;
+
 //# sourceMappingURL=calendar.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/calendar/calendar.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarModule", function() { return CalendarModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__calendar_component__ = __webpack_require__("../../../../../src/app/calendar/calendar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__calendar_row_calendar_row_component__ = __webpack_require__("../../../../../src/app/calendar/calendar-row/calendar-row.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar_item_calendar_item_component__ = __webpack_require__("../../../../../src/app/calendar/calendar-item/calendar-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pipes_timestamp_pipe__ = __webpack_require__("../../../../../src/app/pipes/timestamp.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
-var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var calendar_component_1 = __webpack_require__("../../../../../src/app/calendar/calendar.component.ts");
-var calendar_row_component_1 = __webpack_require__("../../../../../src/app/calendar/calendar-row/calendar-row.component.ts");
-var calendar_item_component_1 = __webpack_require__("../../../../../src/app/calendar/calendar-item/calendar-item.component.ts");
-var timestamp_pipe_1 = __webpack_require__("../../../../../src/app/pipes/timestamp.pipe.ts");
+
+
+
+
+
+
+
 var routes = [
-    { path: '', component: calendar_component_1.CalendarComponent }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_3__calendar_component__["a" /* CalendarComponent */] }
 ];
 var CalendarModule = /** @class */ (function () {
     function CalendarModule() {
     }
     CalendarModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                common_1.CommonModule,
-                router_1.RouterModule.forChild(routes)
+                __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+                __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forChild(routes)
             ],
             declarations: [
-                calendar_component_1.CalendarComponent,
-                calendar_row_component_1.CalendarRowComponent,
-                calendar_item_component_1.CalendarItemComponent,
-                timestamp_pipe_1.TimestampPipe
+                __WEBPACK_IMPORTED_MODULE_3__calendar_component__["a" /* CalendarComponent */],
+                __WEBPACK_IMPORTED_MODULE_4__calendar_row_calendar_row_component__["a" /* CalendarRowComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__calendar_item_calendar_item_component__["a" /* CalendarItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_6__pipes_timestamp_pipe__["a" /* TimestampPipe */]
             ]
         })
     ], CalendarModule);
     return CalendarModule;
 }());
-exports.CalendarModule = CalendarModule;
+
 //# sourceMappingURL=calendar.module.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/models/booking.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Booking; });
 var Booking = /** @class */ (function () {
     function Booking() {
     }
     return Booking;
 }());
-exports.Booking = Booking;
+
 //# sourceMappingURL=booking.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/models/reservation.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Reservation; });
 var Reservation = /** @class */ (function () {
     function Reservation(room, date, hour) {
         this.room = room;
@@ -414,40 +426,39 @@ var Reservation = /** @class */ (function () {
     }
     return Reservation;
 }());
-exports.Reservation = Reservation;
+
 //# sourceMappingURL=reservation.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/models/room.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Room; });
 var Room = /** @class */ (function () {
     function Room() {
     }
     return Room;
 }());
-exports.Room = Room;
+
 //# sourceMappingURL=room.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/pipes/timestamp.pipe.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimestampPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+
 var TimestampPipe = /** @class */ (function () {
     function TimestampPipe() {
     }
@@ -462,13 +473,13 @@ var TimestampPipe = /** @class */ (function () {
         return "" + (+value % 24 < 10 ? "0" : "") + value % 24 + "0000";
     };
     TimestampPipe = __decorate([
-        core_1.Pipe({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
             name: 'timestamp'
         })
     ], TimestampPipe);
     return TimestampPipe;
 }());
-exports.TimestampPipe = TimestampPipe;
+
 //# sourceMappingURL=timestamp.pipe.js.map
 
 /***/ }),
