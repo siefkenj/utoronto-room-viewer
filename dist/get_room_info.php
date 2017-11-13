@@ -42,21 +42,21 @@
 		
 		// the picture
 		$elms = $xpath->query('(//div[@id="columnright"]//table[2]//td[@headers="PHOTO"]//img)[1]');
-		$room_data['photo'] = $tld . $elms[0]->getAttribute('src');
+		$room_data['photo'] = $tld . $elms->item(0)->getAttribute('src');
 
 		// the capacity and types
 		$elms = $xpath->query('//div[@id="columnright"]/div[1]')->item(0);
 		foreach ($elms->getElementsByTagName('tr') as $child) {
 			$cells = $child->getElementsByTagName('td');
 			if ($cells->length == 2) {
-				switch ($cells[0]->textContent) {
+				switch ($cells->item(0)->textContent) {
 				case "Capacity":
-					$room_data['capacity'] = intval($cells[1]->textContent);
+					$room_data['capacity'] = intval($cells->item(1)->textContent);
 					break;
 				case "Teaching station":
-					$room_data['teaching_station'] = $cells[1]->textContent == "Y" ? true : false;
+					$room_data['teaching_station'] = $cells->item(1)->textContent == "Y" ? true : false;
 				case "Teaching station Junior":
-					$room_data['teaching_station_junior'] = $cells[1]->textContent == "Y" ? true : false;
+					$room_data['teaching_station_junior'] = $cells->item(1)->textContent == "Y" ? true : false;
 
 				}
 			}
