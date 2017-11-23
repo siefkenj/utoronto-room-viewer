@@ -25,7 +25,8 @@
         "styles.css",
         "../node_modules/nouislider/distribute/nouislider.min.css",
         "../node_modules/selectize/dist/css/selectize.css",
-        "../node_modules/selectize/dist/css/selectize.default.css"
+        "../node_modules/selectize/dist/css/selectize.default.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js", 
