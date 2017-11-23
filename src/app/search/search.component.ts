@@ -125,15 +125,15 @@ export class SearchComponent implements OnInit {
   // Search form value change events
   
   onDateChanged() {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onCapacityChecked() {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onCapacityRangeChanged(newRange) {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onBuildingsValueChanged(value) {
@@ -146,14 +146,35 @@ export class SearchComponent implements OnInit {
       this.filteredRooms = [];
     }
     
-    this.updateQueryParams();
+    this.updateQuery();
   }
     
   onRoomsValueChanged(value) {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   // Private functions
+  
+  /**
+   * Update query parameters locally,
+   * and then force a search to occur.
+   */
+  updateQuery() {
+    this.updateQueryParams();
+    this.refreshSearch();
+  }
+  
+  /**
+   * Push query parameters to router URL.
+   * This should trigger this.route.queryParamMap to update,
+   * which will cause a search to trigger immediately.
+   */
+  refreshSearch() {
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+      queryParams: this.queryParams
+    });
+  }
   
   /**
    * Trigger the QueryParams to update.
