@@ -1,11 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbDateStruct, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 
 import { Building } from '../models/building';
 import { BuildingService } from '../services/building.service';
 
 import { Room } from '../models/room';
 import { RoomService } from '../services/room.service';
+
+export class DateParserFormatter extends NgbDateParserFormatter {
+    parse(value: string): NgbDateStruct {
+      return {
+        year: +value.substring(0,4),
+        month: +value.substring(5,7),
+        day: +value.substring(8,10)
+      };
+    }
+    
+    format(date: NgbDateStruct): string {
+      return `${date.year}-${date.month}-${date.day}`;
+    }
+}
 
 @Component({
   selector: 'search',
@@ -14,7 +29,7 @@ import { RoomService } from '../services/room.service';
 })
 export class SearchComponent implements OnInit {
   // Date config options
-  date = new Date();
+  date: NgbDateStruct;
   
   // Capacity config options
   filterByCapacity = false;
@@ -63,20 +78,46 @@ export class SearchComponent implements OnInit {
   constructor(
     private buildingService: BuildingService,
     private roomService: RoomService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private dateFormatter: DateParserFormatter) { }
 
   ngOnInit() {
+    this.date = this.dateFormatter.parse(this.convertDateToQueryParamString(new Date()));
     this.buildingService.getBuildings().then(bs => this.buildings = bs);
     this.roomService.getRooms().then(rs => this.allRooms = rs);
     this.updateQueryParams();
     
     // Retrieve the query parameters
     this.route.queryParamMap.subscribe(pmap => {
+      // Enable calendar if we have enough query parameters in the URL
       if (pmap.has('date') && pmap.has('buildings') && pmap.get('buildings'))
       {
         this.hasActiveQuery = true;
       } else {
         this.hasActiveQuery = false;
+      }
+      
+      // Update inputs based on query parameters
+      if (pmap.has('date')) {
+        this.date = this.dateFormatter.parse(pmap.get('date'));
+      }
+      if (pmap.has('buildings')) {
+        this.selectedBuildings = (pmap.get('buildings') || '').split(',');
+      }
+      if (pmap.has('rooms')) {
+        this.selectedRooms = (pmap.get('rooms') || '').split(',');
+      }
+      if (pmap.has('minCapacity') || pmap.has('maxCapacity')) {
+        var min = pmap.get('minCapacity');
+        if (min) {
+          this.capacityRange[0] = +min;
+        }
+        var max = pmap.get('maxCapacity');
+        if (max) {
+          this.capacityRange[1] = +max;
+        }
+        this.filterByCapacity = true;
       }
     });
   }
@@ -84,15 +125,15 @@ export class SearchComponent implements OnInit {
   // Search form value change events
   
   onDateChanged() {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onCapacityChecked() {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onCapacityRangeChanged(newRange) {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   onBuildingsValueChanged(value) {
@@ -105,14 +146,35 @@ export class SearchComponent implements OnInit {
       this.filteredRooms = [];
     }
     
-    this.updateQueryParams();
+    this.updateQuery();
   }
     
   onRoomsValueChanged(value) {
-    this.updateQueryParams();
+    this.updateQuery();
   }
   
   // Private functions
+  
+  /**
+   * Update query parameters locally,
+   * and then force a search to occur.
+   */
+  updateQuery() {
+    this.updateQueryParams();
+    this.refreshSearch();
+  }
+  
+  /**
+   * Push query parameters to router URL.
+   * This should trigger this.route.queryParamMap to update,
+   * which will cause a search to trigger immediately.
+   */
+  refreshSearch() {
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+      queryParams: this.queryParams
+    });
+  }
   
   /**
    * Trigger the QueryParams to update.
@@ -137,10 +199,16 @@ export class SearchComponent implements OnInit {
    * Helper function to convert a date object into a URL accessible string
    */ 
   private convertDateToQueryParamString(date) {
+    if (!date) {
+      return '';
+    }
+    
     if (date.format) {
       return `${date.format('YYYY-MM-DD')}`;
     } else if (date.getUTCFullYear && date.getUTCMonth && date.getDate) {
       return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getDate()}`;
+    } else if (date.year && date.month && date.day) {
+      return `${date.year}-${date.month}-${date.day}`;
     }
     return date.toString();
   }

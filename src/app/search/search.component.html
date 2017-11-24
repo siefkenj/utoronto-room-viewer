@@ -5,10 +5,10 @@
 	Date
 	</div>
 	<div class="labeled">
-        <date-picker name="datepicker"
-          [(ngModel)]="date"
-          [showClearButton]="false"
-          (ngModelChange)="onDateChanged($event)"></date-picker>
+    <ngb-datepicker
+      [(ngModel)]="date"
+      [firstDayOfWeek]="7"
+      (ngModelChange)="onDateChanged()"></ngb-datepicker>
  	</div>
     </label>
   </div>
@@ -18,7 +18,9 @@
       Filter by capacity?
 	</div>
       <div class="labeled">
-        <input type="checkbox" [(ngModel)]="filterByCapacity" (ngModelChange)="onCapacityChecked($event)"/>
+        <input type="checkbox"
+          [(ngModel)]="filterByCapacity"
+          (ngModelChange)="onCapacityChecked($event)"/>
       </div>
     </label>
   </div>
@@ -51,7 +53,6 @@
           (ngModelChange)="onBuildingsValueChanged($event)"></ng-selectize>
       </div>
     </label>
-    {{selectedBuildings.join(',')}}
   </div>
   <div class="form-item">
     <label>

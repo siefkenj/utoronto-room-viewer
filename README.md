@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This project uses some external widgets.
 
-[angular-io-datepicker](https://www.npmjs.com/package/angular-io-datepicker)
+[ngb-datepicker](https://ng-bootstrap.github.io/#/components/datepicker)
 [ng2-nouislider](https://www.npmjs.com/package/ng2-nouislider)
 [ng-selectize](https://www.npmjs.com/package/ng-selectize)
 

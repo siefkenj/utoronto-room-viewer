@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CalendarModule } from 'app/calendar/calendar.module';
-import { SearchComponent } from './search.component';
+import { SearchComponent, DateParserFormatter } from './search.component';
 
-import { DatePickerModule } from 'angular-io-datepicker';
 import { NouisliderModule } from 'ng2-nouislider';
 import { NgSelectizeModule } from 'ng-selectize';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 const routes = [
   { path: '', component: SearchComponent }
@@ -18,14 +19,18 @@ const routes = [
   imports: [
     CommonModule,
     FormsModule,
-    DatePickerModule,
+    NgDatepickerModule,
     NouisliderModule,
     NgSelectizeModule,
     CalendarModule,
+    NgbModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     SearchComponent
+  ],
+  providers: [
+    DateParserFormatter
   ],
   exports: [ ]
 })
