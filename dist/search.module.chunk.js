@@ -21,7 +21,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"search-form\">\n  <div class=\"form-item\">\n    <label for=\"datepicker\">\n\t<div class=\"label\">\n\tDate\n\t</div>\n\t<div class=\"labeled\">\n        <date-picker name=\"datepicker\"\n          [(ngModel)]=\"date\"\n          [showClearButton]=\"false\"\n          (ngModelChange)=\"onDateChanged($event)\"></date-picker>\n \t</div>\n    </label>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t<div class=\"label\">\n      Filter by capacity?\n\t</div>\n      <div class=\"labeled\">\n        <input type=\"checkbox\" [(ngModel)]=\"filterByCapacity\" (ngModelChange)=\"onCapacityChecked($event)\"/>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\" [hidden]=\"!filterByCapacity\">\n\t  Capacity:\n    <div class=\"input-range\">\n      <nouislider\n        [config]=\"sliderConfig\"\n        [connect]=\"true\"\n        [min]=\"sliderMin\"\n        [max]=\"sliderMax\"\n        [step]=\"1\"\n        [tooltips]=\"true\"\n        [(ngModel)]=\"capacityRange\"\n        [disabled]=\"!filterByCapacity\"\n        (ngModelChange)=\"onCapacityRangeChanged($event)\"></nouislider>\n    </div>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t    <div class=\"label\">\n      Building(s)\n      </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"buildingsConfig\"\n          placeholder=\"Select one or more buildings\"\n          [options]=\"buildings\"\n          [(ngModel)]=\"selectedBuildings\"\n          (ngModelChange)=\"onBuildingsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n    {{selectedBuildings}}\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t <div class=\"label\">\n      Room(s)\n\t </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"roomsConfig\"\n          placeholder=\"Select rooms, or leave blank to choose all\"\n          [enabled]=\"selectedBuildings.length\"\n          [options]=\"filteredRooms\"\n          [(ngModel)]=\"selectedRooms\"\n          (ngModelChange)=\"onRoomsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n  </div>\n <div>\n  <a routerLink=\"/calendar\" [queryParams]=\"queryParams\" class=\"navbutton searchbutton\">Search</a>\n </div>\n</div>\n"
+module.exports = "<div class=\"search-form\">\n  <div class=\"form-item\">\n    <label for=\"datepicker\">\n\t<div class=\"label\">\n\tDate\n\t</div>\n\t<div class=\"labeled\">\n        <date-picker name=\"datepicker\"\n          [(ngModel)]=\"date\"\n          [showClearButton]=\"false\"\n          (ngModelChange)=\"onDateChanged($event)\"></date-picker>\n \t</div>\n    </label>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t<div class=\"label\">\n      Filter by capacity?\n\t</div>\n      <div class=\"labeled\">\n        <input type=\"checkbox\" [(ngModel)]=\"filterByCapacity\" (ngModelChange)=\"onCapacityChecked($event)\"/>\n      </div>\n    </label>\n  </div>\n  <div class=\"form-item\" [hidden]=\"!filterByCapacity\">\n\t  Capacity:\n    <div class=\"input-range\">\n      <nouislider\n        [config]=\"sliderConfig\"\n        [connect]=\"true\"\n        [min]=\"sliderMin\"\n        [max]=\"sliderMax\"\n        [step]=\"1\"\n        [tooltips]=\"true\"\n        [(ngModel)]=\"capacityRange\"\n        [disabled]=\"!filterByCapacity\"\n        (ngModelChange)=\"onCapacityRangeChanged($event)\"></nouislider>\n    </div>\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t    <div class=\"label\">\n      Building(s)\n      </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"buildingsConfig\"\n          placeholder=\"Select one or more buildings\"\n          [options]=\"buildings\"\n          [(ngModel)]=\"selectedBuildings\"\n          (ngModelChange)=\"onBuildingsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n    {{selectedBuildings.join(',')}}\n  </div>\n  <div class=\"form-item\">\n    <label>\n\t <div class=\"label\">\n      Room(s)\n\t </div>\n      <div class=\"labeled\">\n        <ng-selectize\n          [config]=\"roomsConfig\"\n          placeholder=\"Select rooms, or leave blank to choose all\"\n          [enabled]=\"selectedBuildings.length\"\n          [options]=\"filteredRooms\"\n          [(ngModel)]=\"selectedRooms\"\n          (ngModelChange)=\"onRoomsValueChanged($event)\"></ng-selectize>\n      </div>\n    </label>\n  </div>\n  <div>\n    <a routerLink=\"/search\" [queryParams]=\"queryParams\" class=\"navbutton searchbutton\">Search</a>\n  </div>\n</div>\n<div *ngIf=\"hasActiveQuery\">\n  <calendar></calendar>\n</div>"
 
 /***/ }),
 
@@ -41,13 +41,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var building_service_1 = __webpack_require__("../../../../../src/app/services/building.service.ts");
 var room_service_1 = __webpack_require__("../../../../../src/app/services/room.service.ts");
 var SearchComponent = /** @class */ (function () {
     // Class functions
-    function SearchComponent(buildingService, roomService) {
+    function SearchComponent(buildingService, roomService, route) {
         this.buildingService = buildingService;
         this.roomService = roomService;
+        this.route = route;
         // Date config options
         this.date = new Date();
         // Capacity config options
@@ -83,12 +85,23 @@ var SearchComponent = /** @class */ (function () {
             plugins: ['remove_button']
         };
         this.selectedRooms = [];
+        // Calendar display trigger
+        this.hasActiveQuery = false;
     }
     SearchComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.buildingService.getBuildings().then(function (bs) { return _this.buildings = bs; });
         this.roomService.getRooms().then(function (rs) { return _this.allRooms = rs; });
         this.updateQueryParams();
+        // Retrieve the query parameters
+        this.route.queryParamMap.subscribe(function (pmap) {
+            if (pmap.has('date') && pmap.has('buildings') && pmap.get('buildings')) {
+                _this.hasActiveQuery = true;
+            }
+            else {
+                _this.hasActiveQuery = false;
+            }
+        });
     };
     // Search form value change events
     SearchComponent.prototype.onDateChanged = function () {
@@ -151,10 +164,10 @@ var SearchComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/search/search.component.html"),
             styles: [__webpack_require__("../../../../../src/app/search/search.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof building_service_1.BuildingService !== "undefined" && building_service_1.BuildingService) === "function" && _a || Object, typeof (_b = typeof room_service_1.RoomService !== "undefined" && room_service_1.RoomService) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof building_service_1.BuildingService !== "undefined" && building_service_1.BuildingService) === "function" && _a || Object, typeof (_b = typeof room_service_1.RoomService !== "undefined" && room_service_1.RoomService) === "function" && _b || Object, typeof (_c = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _c || Object])
     ], SearchComponent);
     return SearchComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 exports.SearchComponent = SearchComponent;
 /**
@@ -186,6 +199,7 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
 var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
+var calendar_module_1 = __webpack_require__("../../../../../src/app/calendar/calendar.module.ts");
 var search_component_1 = __webpack_require__("../../../../../src/app/search/search.component.ts");
 var angular_io_datepicker_1 = __webpack_require__("../../../../angular-io-datepicker/src/datepicker/index.js");
 var ng2_nouislider_1 = __webpack_require__("../../../../ng2-nouislider/src/nouislider.js");
@@ -204,6 +218,7 @@ var SearchModule = /** @class */ (function () {
                 angular_io_datepicker_1.DatePickerModule,
                 ng2_nouislider_1.NouisliderModule,
                 ng_selectize_1.NgSelectizeModule,
+                calendar_module_1.CalendarModule,
                 router_1.RouterModule.forChild(routes)
             ],
             declarations: [

@@ -6,18 +6,19 @@ webpackJsonp(["main"],{
 var map = {
 	"app/calendar/calendar.module": [
 		"../../../../../src/app/calendar/calendar.module.ts",
-		"calendar.module"
+		"common"
 	],
 	"app/search/search.module": [
 		"../../../../../src/app/search/search.module.ts",
-		"search.module"
+		"search.module",
+		"common"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -113,7 +114,7 @@ var routes = [
     { path: '', redirectTo: '/search', pathMatch: 'full' },
     { path: 'search', loadChildren: 'app/search/search.module#SearchModule' },
     { path: 'tools', component: tools_component_1.ToolsComponent },
-    { path: 'calendar', loadChildren: 'app/calendar/calendar.module#CalendarModule' }
+    { path: 'calendar', redirectTo: '/calendar' }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
