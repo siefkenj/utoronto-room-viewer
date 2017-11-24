@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ const routes = [
     BrowserModule,
     HttpModule,
 	  HttpClientModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(routes, {useHash: environment['useHashRouting'] || false})
   ],
   providers: [

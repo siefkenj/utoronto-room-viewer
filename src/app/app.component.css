@@ -1,6 +1,7 @@
 .nav {
 	display: flex;
 	flex-direction: row;
+	flex-shrink: 0;
 	padding: 3px;
 	background: #002a5c;
 	color: white;
