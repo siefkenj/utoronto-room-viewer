@@ -39,3 +39,7 @@ app-tools {
 .navbutton.active {
 	background: rgb(76, 175,80);
 }
+
+button.btn-link {
+	border-color: transparent;
+}

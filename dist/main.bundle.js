@@ -4,21 +4,16 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"app/calendar/calendar.module": [
-		"../../../../../src/app/calendar/calendar.module.ts",
-		"common"
-	],
 	"app/search/search.module": [
 		"../../../../../src/app/search/search.module.ts",
-		"search.module",
-		"common"
+		"search.module"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+	return __webpack_require__.e(ids[1]).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -38,7 +33,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".nav {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: horizontal;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: row;\n\t        flex-direction: row;\n\tpadding: 3px;\n\tbackground: #002a5c;\n\tcolor: white;\n}\n\n.nav > div {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n}\n.title {\n\tfont-weight: bold;\n\tfont-size: 1.2em;\n\tmargin: 2px;\n\t-ms-flex-item-align: center;\n\t    -ms-grid-row-align: center;\n\t    align-self: center;\n}\n.spacer {\n\t-webkit-box-flex: 1;\n\t    -ms-flex: 1 auto;\n\t        flex: 1 auto;\n}\n\n", ""]);
+exports.push([module.i, ".nav {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: horizontal;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: row;\n\t        flex-direction: row;\n\t-ms-flex-negative: 0;\n\t    flex-shrink: 0;\n\tpadding: 3px;\n\tbackground: #002a5c;\n\tcolor: white;\n}\n\n.nav > div {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n}\n.title {\n\tfont-weight: bold;\n\tfont-size: 1.2em;\n\tmargin: 2px;\n\t-ms-flex-item-align: center;\n\t    -ms-grid-row-align: center;\n\t    align-self: center;\n}\n.spacer {\n\t-webkit-box-flex: 1;\n\t    -ms-flex: 1 auto;\n\t        flex: 1 auto;\n}\n\n", ""]);
 
 // exports
 
@@ -51,7 +46,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav\">\n  <div class=\"title\">{{title}}</div>\n  <div class=\"spacer\"></div>\n  <a class=\"navbutton\" routerLink=\"/search\" routerLinkActive=\"active\">Room Viewer</a>\n  <a class=\"navbutton\" routerLink=\"/tools\" routerLinkActive=\"active\">Tools</a>\n</div>\n<div class=\"body\">\n<router-outlet></router-outlet>\n</div>\n<div class=\"footer\">\n</div>\n"
+module.exports = "<div class=\"nav\">\n  <div class=\"title\">{{title}}</div>\n  <div class=\"spacer\"></div>\n  <a class=\"navbutton\" routerLink=\"/search\" routerLinkActive=\"active\">Room Viewer</a>\n  <a class=\"navbutton\" routerLink=\"/tools\" routerLinkActive=\"active\">Tools</a>\n</div>\n<div class=\"body\">\n  <router-outlet></router-outlet>\n</div>\n<div class=\"footer\">\n</div>\n"
 
 /***/ }),
 
@@ -104,6 +99,7 @@ var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular
 var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
 var http_2 = __webpack_require__("../../../common/@angular/common/http.es5.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
+var ng_bootstrap_1 = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
 var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var booking_service_1 = __webpack_require__("../../../../../src/app/services/booking.service.ts");
@@ -129,6 +125,7 @@ var AppModule = /** @class */ (function () {
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
                 http_2.HttpClientModule,
+                ng_bootstrap_1.NgbModule.forRoot(),
                 router_1.RouterModule.forRoot(routes, { useHash: environment_1.environment['useHashRouting'] || false })
             ],
             providers: [
