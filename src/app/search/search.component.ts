@@ -10,10 +10,11 @@ import { RoomService } from '../services/room.service';
 
 export class DateParserFormatter extends NgbDateParserFormatter {
     parse(value: string): NgbDateStruct {
+      let [year, month, day] = value.split('-');
       return {
-        year: +value.substring(0,4),
-        month: +value.substring(5,7),
-        day: +value.substring(8,10)
+        year: +year,
+        month: +month,
+        day: +day
       };
     }
     
@@ -207,6 +208,8 @@ export class SearchComponent implements OnInit {
       return `${date.format('YYYY-MM-DD')}`;
     } else if (date.getUTCFullYear && date.getUTCMonth && date.getDate) {
       return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getDate()}`;
+    } else if (this.dateFormatter && date.year && date.month && date.day) {
+      return this.dateFormatter.format(this.date);
     } else if (date.year && date.month && date.day) {
       return `${date.year}-${date.month}-${date.day}`;
     }
