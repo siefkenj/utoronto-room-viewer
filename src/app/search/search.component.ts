@@ -10,12 +10,11 @@ import { RoomService } from '../services/room.service';
 
 export class DateParserFormatter extends NgbDateParserFormatter {
     parse(value: string): NgbDateStruct {
-      let firstDashIndex = value.indexOf('-');
-      let secondDashIndex = value.indexOf('-', firstDashIndex + 1);
+      let [year, month, day] = value.split('-');
       return {
-        year: +value.substring(0, firstDashIndex),
-        month: +value.substring(firstDashIndex + 1, secondDashIndex),
-        day: +value.substring(secondDashIndex + 1, value.length)
+        year: +year,
+        month: +month,
+        day: +day
       };
     }
     
