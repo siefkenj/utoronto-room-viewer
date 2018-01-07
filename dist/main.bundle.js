@@ -51,25 +51,25 @@ module.exports = "<div class=\"nav\">\n  <div class=\"title\">{{title}}</div>\n 
 /***/ }),
 
 /***/ "../../../../../src/app/app.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         // Main application title
         this.title = 'uToronto Room Viewer';
     }
     AppComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
@@ -77,77 +77,93 @@ var AppComponent = /** @class */ (function () {
     ], AppComponent);
     return AppComponent;
 }());
-exports.AppComponent = AppComponent;
+
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/app.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_booking_service__ = __webpack_require__("../../../../../src/app/services/booking.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_building_service__ = __webpack_require__("../../../../../src/app/services/building.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_room_service__ = __webpack_require__("../../../../../src/app/services/room.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tools_tools_component__ = __webpack_require__("../../../../../src/app/tools/tools.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
-var http_2 = __webpack_require__("../../../common/@angular/common/http.es5.js");
-var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var ng_bootstrap_1 = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
-var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
-var booking_service_1 = __webpack_require__("../../../../../src/app/services/booking.service.ts");
-var building_service_1 = __webpack_require__("../../../../../src/app/services/building.service.ts");
-var room_service_1 = __webpack_require__("../../../../../src/app/services/room.service.ts");
-var tools_component_1 = __webpack_require__("../../../../../src/app/tools/tools.component.ts");
+
+
+
+
+
+
+
+
+
+
+
+
 var routes = [
     { path: '', redirectTo: '/search', pathMatch: 'full' },
     { path: 'search', loadChildren: 'app/search/search.module#SearchModule' },
-    { path: 'tools', component: tools_component_1.ToolsComponent },
+    { path: 'tools', component: __WEBPACK_IMPORTED_MODULE_11__tools_tools_component__["a" /* ToolsComponent */] },
     { path: 'calendar', redirectTo: '/calendar' }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                app_component_1.AppComponent,
-                tools_component_1.ToolsComponent
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__tools_tools_component__["a" /* ToolsComponent */]
             ],
             imports: [
-                platform_browser_1.BrowserModule,
-                http_1.HttpModule,
-                http_2.HttpClientModule,
-                ng_bootstrap_1.NgbModule.forRoot(),
-                router_1.RouterModule.forRoot(routes, { useHash: environment_1.environment['useHashRouting'] || false })
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["b" /* NgbModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(routes, { useHash: __WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */]['useHashRouting'] || false })
             ],
             providers: [
-                booking_service_1.BookingService,
-                building_service_1.BuildingService,
-                room_service_1.RoomService
+                __WEBPACK_IMPORTED_MODULE_8__services_booking_service__["a" /* BookingService */],
+                __WEBPACK_IMPORTED_MODULE_9__services_building_service__["a" /* BuildingService */],
+                __WEBPACK_IMPORTED_MODULE_10__services_room_service__["a" /* RoomService */]
             ],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
 }());
-exports.AppModule = AppModule;
+
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/services/booking.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,11 +173,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
-__webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+
+
+
+
 var BookingService = /** @class */ (function () {
     function BookingService(http) {
         this.http = http;
@@ -178,7 +193,7 @@ var BookingService = /** @class */ (function () {
             return Promise.reject("Date input was not supplied to the booking service.");
         }
         // Build query URL
-        var baseUrl = environment_1.environment['bookingBaseUrl'];
+        var baseUrl = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */]['bookingBaseUrl'];
         if (!baseUrl) {
             return Promise.reject("NO 'bookingBaseUrl' configured in the current environment.");
         }
@@ -210,22 +225,24 @@ var BookingService = /** @class */ (function () {
         return "" + date.getUTCFullYear() + (date.getUTCMonth() + 1 < 10 ? "0" : "") + (date.getUTCMonth() + 1) + (date.getUTCDate() < 10 ? "0" : "") + date.getUTCDate();
     };
     BookingService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
     ], BookingService);
     return BookingService;
     var _a;
 }());
-exports.BookingService = BookingService;
+
 //# sourceMappingURL=booking.service.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/services/building.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BuildingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mockups_buildings__ = __webpack_require__("../../../../../src/app/services/mockups/buildings.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -235,9 +252,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var buildings_1 = __webpack_require__("../../../../../src/app/services/mockups/buildings.ts");
+
+
 var BuildingService = /** @class */ (function () {
     function BuildingService() {
     }
@@ -246,30 +262,29 @@ var BuildingService = /** @class */ (function () {
      * This will include all buildings (no filter options).
      */
     BuildingService.prototype.getBuildings = function () {
-        var rawData = buildings_1.BUILDINGS.data;
+        var rawData = __WEBPACK_IMPORTED_MODULE_1__mockups_buildings__["a" /* BUILDINGS */].data;
         var buildings = rawData.map(function (jsonObj) {
             return jsonObj.attributes;
         });
         return Promise.resolve(buildings);
     };
     BuildingService = __decorate([
-        core_1.Injectable(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [])
     ], BuildingService);
     return BuildingService;
 }());
-exports.BuildingService = BuildingService;
+
 //# sourceMappingURL=building.service.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/services/mockups/buildings.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BUILDINGS = {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BUILDINGS; });
+var BUILDINGS = {
     data: [{
             "type": "bldg",
             "id": "AB",
@@ -641,12 +656,11 @@ exports.BUILDINGS = {
 /***/ }),
 
 /***/ "../../../../../src/app/services/mockups/rooms.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ROOMS = {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ROOMS; });
+var ROOMS = {
     data: [{
             "type": "room",
             "id": "BI131",
@@ -6386,10 +6400,12 @@ exports.ROOMS = {
 /***/ }),
 
 /***/ "../../../../../src/app/services/room.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoomService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mockups_rooms__ = __webpack_require__("../../../../../src/app/services/mockups/rooms.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6399,9 +6415,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var rooms_1 = __webpack_require__("../../../../../src/app/services/mockups/rooms.ts");
+
+
 var RoomService = /** @class */ (function () {
     function RoomService() {
     }
@@ -6417,7 +6432,7 @@ var RoomService = /** @class */ (function () {
      */
     RoomService.prototype.getRooms = function (filterParams) {
         // Read JSON data
-        var rawData = rooms_1.ROOMS.data;
+        var rawData = __WEBPACK_IMPORTED_MODULE_1__mockups_rooms__["a" /* ROOMS */].data;
         var rooms = rawData.map(function (jsonObj) {
             return jsonObj.attributes;
         }).map(this.injectRoomId);
@@ -6478,12 +6493,12 @@ var RoomService = /** @class */ (function () {
         return room;
     };
     RoomService = __decorate([
-        core_1.Injectable(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [])
     ], RoomService);
     return RoomService;
 }());
-exports.RoomService = RoomService;
+
 //# sourceMappingURL=room.service.js.map
 
 /***/ }),
@@ -6514,10 +6529,13 @@ module.exports = "<div class=\"body\">\n<p>\nData about the size of each classro
 /***/ }),
 
 /***/ "../../../../../src/app/tools/tools.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToolsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6527,10 +6545,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var http_1 = __webpack_require__("../../../common/@angular/common/http.es5.js");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
+
+
+
 var ToolsComponent = /** @class */ (function () {
     function ToolsComponent(http) {
         this.http = http;
@@ -6544,7 +6561,7 @@ var ToolsComponent = /** @class */ (function () {
         this.inProgress = true;
         var allRooms = {};
         var roomsLeft = 0;
-        this.http.get(environment_1.environment['roomsBaseUrl']).subscribe(function (data) {
+        this.http.get(__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */]['roomsBaseUrl']).subscribe(function (data) {
             allRooms = data;
             _this.roomInfo = JSON.stringify(allRooms, null, 4);
             getRoomInfo();
@@ -6560,7 +6577,7 @@ var ToolsComponent = /** @class */ (function () {
             };
             var _loop_1 = function (room_l) {
                 var bldg = room_l.bldg, room = room_l.room;
-                _this.http.get(environment_1.environment['bookingBaseUrl'] + "?room=" + room + "&bldg=" + bldg).subscribe(function (data) {
+                _this.http.get(__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */]['bookingBaseUrl'] + "?room=" + room + "&bldg=" + bldg).subscribe(function (data) {
                     Object.assign(room_l, data);
                     _this.roomInfo = JSON.stringify(allRooms, null, 4);
                     wrapup();
@@ -6575,33 +6592,32 @@ var ToolsComponent = /** @class */ (function () {
         };
     };
     ToolsComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tools',
             template: __webpack_require__("../../../../../src/app/tools/tools.component.html"),
             styles: [__webpack_require__("../../../../../src/app/tools/tools.component.css")],
-            encapsulation: core_1.ViewEncapsulation.None
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof http_1.HttpClient !== "undefined" && http_1.HttpClient) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], ToolsComponent);
     return ToolsComponent;
     var _a;
 }());
-exports.ToolsComponent = ToolsComponent;
+
 //# sourceMappingURL=tools.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/environments/environment.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.environment = {
+var environment = {
     production: false,
     bookingBaseUrl: "get_room_info.php",
     roomsBaseUrl: "get_rooms.php",
@@ -6613,19 +6629,22 @@ exports.environment = {
 /***/ }),
 
 /***/ "../../../../../src/main.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("../../../../../src/app/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var platform_browser_dynamic_1 = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
-var app_module_1 = __webpack_require__("../../../../../src/app/app.module.ts");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
