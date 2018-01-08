@@ -8,6 +8,8 @@ import { Room } from '../models/room';
 
 @Injectable()
 export class BookingService {
+  bookingCache: {[roomIdDate: string]: Booking[]} = { };
+  
   constructor(private http: Http) { }
   
   /**
@@ -20,6 +22,11 @@ export class BookingService {
     }
     if (!date) {
       return Promise.reject("Date input was not supplied to the booking service.");
+    }
+    
+    let cacheValue = this.getBookingsFromCache(room, date);
+    if (cacheValue) {
+      return Promise.resolve(cacheValue);
     }
     
     // Build query URL
@@ -43,8 +50,23 @@ export class BookingService {
         bookings = bookings.filter(booking => {
           return booking.time.startsWith(dateStr);
         });
+        this.storeBookingsInCache(room, date, bookings);
         return bookings;
       });
+  }
+  
+  private getBookingsFromCache(room: Room, date: Date): Booking[] {
+    let id = this.convertRoomDateToCacheId(room, date);
+    return this.bookingCache[id];
+  }
+  
+  private storeBookingsInCache(room: Room, date: Date, bookings: Booking[]): void {
+    let id = this.convertRoomDateToCacheId(room, date);
+    this.bookingCache[id] = bookings;
+  }
+  
+  private convertRoomDateToCacheId(room: Room, date: Date) : string {
+    return `${room.id}-${this.dateToRequestTimestamp(date)}`;
   }
   
   /**
