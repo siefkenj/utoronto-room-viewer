@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 import { BookingService } from '../../services/booking.service';
 
@@ -11,7 +11,7 @@ import { Reservation } from '../../models/reservation';
   templateUrl: './calendar-row.component.html',
   styleUrls: ['./calendar-row.component.css']
 })
-export class CalendarRowComponent implements OnInit {
+export class CalendarRowComponent implements OnChanges {
   // Room to display in the calendar row
   @Input() room: Room;
   
@@ -32,7 +32,7 @@ export class CalendarRowComponent implements OnInit {
   
   constructor(private bookingService: BookingService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.queryRelatedBookings(this.room, this.date);
   }
 
