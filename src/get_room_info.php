@@ -68,6 +68,7 @@
 		exit();
 	}
 
+	$bookings = array();
 	// XXX the osm website lists Sunday listings as belonging to the previous week,
 	// but their API makes Sunday the start of the next week. If the day is a sunday,
 	// retrieve two weeks of data and merge it.
@@ -102,14 +103,12 @@
 
 		$date_elms = $xpath->query('//div[@id="apex_cal_data_grid_src"]/../input[1]');
 
-		$bookings = array();
 		for ($i = 0; $i < $date_elms->length; $i++) {
 			$booking_time = $date_elms->item($i)->getAttribute('value');
 			$elm = $xpath->query('../div[@id="apex_cal_data_grid_src"]', $date_elms->item($i));
 			$booking_details = trim($elm->item(0)->textContent);
 			$bookings[] = array("time" => $booking_time, "desc" => $booking_details, "id" => "$bldg $room $booking_time");
 		}
-		$room_data['bookings'] = $bookings;
 
 		$date = $orig_date;
 	}
@@ -131,7 +130,6 @@
 
 	$date_elms = $xpath->query('//div[@id="apex_cal_data_grid_src"]/../input[1]');
 
-	$bookings = array();
 	for ($i = 0; $i < $date_elms->length; $i++) {
 		$booking_time = $date_elms->item($i)->getAttribute('value');
 		$elm = $xpath->query('../div[@id="apex_cal_data_grid_src"]', $date_elms->item($i));
