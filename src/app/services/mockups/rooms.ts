@@ -5707,7 +5707,8 @@ export const ROOMS = {
       "teaching_station": true,
       "teaching_station_junior": false
     }
-  }, {
+  }, 
+	{
     "type": "room",
     "id": "WW121",
     "attributes": {
@@ -5719,7 +5720,8 @@ export const ROOMS = {
       "teaching_station": true,
       "teaching_station_junior": false
     }
-  }, {
+  }, 
+{
     "type": "room",
     "id": "WW126",
     "attributes": {
@@ -5731,5 +5733,139 @@ export const ROOMS = {
       "teaching_station": true,
       "teaching_station_junior": false
     }
-  }]
+},
+
+
+
+{
+    "type": "room",
+    "id": "MY150",
+    "attributes": {
+      "bldg": "MY",
+      "room": "150",
+      "desc": "150 ",
+      "capacity": 468
+    }
+},
+{
+    "type": "room",
+    "id": "MY315",
+    "attributes": {
+      "bldg": "MY",
+      "room": "315",
+      "desc": "315 ",
+      "capacity": 72
+    }
+},
+{
+    "type": "room",
+    "id": "MY320",
+    "attributes": {
+      "bldg": "MY",
+      "room": "320",
+      "desc": "320 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY330",
+    "attributes": {
+      "bldg": "MY",
+      "room": "330",
+      "desc": "330 ",
+      "capacity": 72
+    }
+},
+{
+    "type": "room",
+    "id": "MY350",
+    "attributes": {
+      "bldg": "MY",
+      "room": "350",
+      "desc": "350 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY360",
+    "attributes": {
+      "bldg": "MY",
+      "room": "360",
+      "desc": "360 ",
+      "capacity": 100
+    }
+},
+{
+    "type": "room",
+    "id": "MY370",
+    "attributes": {
+      "bldg": "MY",
+      "room": "370",
+      "desc": "370 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY380",
+    "attributes": {
+      "bldg": "MY",
+      "room": "380",
+      "desc": "380 ",
+      "capacity": 72
+    }
+},
+{
+    "type": "room",
+    "id": "MY420",
+    "attributes": {
+      "bldg": "MY",
+      "room": "420",
+      "desc": "420 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY430",
+    "attributes": {
+      "bldg": "MY",
+      "room": "430",
+      "desc": "430 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY440",
+    "attributes": {
+      "bldg": "MY",
+      "room": "440",
+      "desc": "440 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY480",
+    "attributes": {
+      "bldg": "MY",
+      "room": "480",
+      "desc": "480 ",
+      "capacity": 36
+    }
+},
+{
+    "type": "room",
+    "id": "MY490",
+    "attributes": {
+      "bldg": "MY",
+      "room": "490",
+      "desc": "490 ",
+      "capacity": 36
+    }
+}
+]
 }

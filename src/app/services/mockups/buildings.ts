@@ -218,6 +218,14 @@ export const BUILDINGS = {
     }
   }, {
     "type": "bldg",
+    "id": "MY",
+    "attributes": {
+      "name": "MY",
+      "desc": "MY Myhal Centre MCEIE"
+    }
+  },
+	  {
+    "type": "bldg",
     "id": "NF",
     "attributes": {
       "name": "NF",

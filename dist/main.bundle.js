@@ -180,17 +180,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var BookingService = /** @class */ (function () {
     function BookingService(http) {
         this.http = http;
+        this.bookingCache = {};
     }
     /**
      * Retrieve Booking data.
      * This requires a Room and a date to dynamically query for results.
      */
     BookingService.prototype.getBookingsForRoom = function (room, date) {
+        var _this = this;
         if (!room) {
             return Promise.reject("Room input was not supplied to the booking service.");
         }
         if (!date) {
             return Promise.reject("Date input was not supplied to the booking service.");
+        }
+        var cacheValue = this.getBookingsFromCache(room, date);
+        if (cacheValue) {
+            return Promise.resolve(cacheValue);
         }
         // Build query URL
         var baseUrl = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */]['bookingBaseUrl'];
@@ -212,8 +218,20 @@ var BookingService = /** @class */ (function () {
             bookings = bookings.filter(function (booking) {
                 return booking.time.startsWith(dateStr);
             });
+            _this.storeBookingsInCache(room, date, bookings);
             return bookings;
         });
+    };
+    BookingService.prototype.getBookingsFromCache = function (room, date) {
+        var id = this.convertRoomDateToCacheId(room, date);
+        return this.bookingCache[id];
+    };
+    BookingService.prototype.storeBookingsInCache = function (room, date, bookings) {
+        var id = this.convertRoomDateToCacheId(room, date);
+        this.bookingCache[id] = bookings;
+    };
+    BookingService.prototype.convertRoomDateToCacheId = function (room, date) {
+        return room.id + "-" + this.dateToRequestTimestamp(date);
     };
     /**
      * Convert Date object into a string, with format "YYYYMMDD"
@@ -503,6 +521,14 @@ var BUILDINGS = {
                 "desc": "MU Munk Centre - Int. Studies"
             }
         }, {
+            "type": "bldg",
+            "id": "MY",
+            "attributes": {
+                "name": "MY",
+                "desc": "MY Myhal Centre MCEIE"
+            }
+        },
+        {
             "type": "bldg",
             "id": "NF",
             "attributes": {
@@ -6369,7 +6395,8 @@ var ROOMS = {
                 "teaching_station": true,
                 "teaching_station_junior": false
             }
-        }, {
+        },
+        {
             "type": "room",
             "id": "WW121",
             "attributes": {
@@ -6381,7 +6408,8 @@ var ROOMS = {
                 "teaching_station": true,
                 "teaching_station_junior": false
             }
-        }, {
+        },
+        {
             "type": "room",
             "id": "WW126",
             "attributes": {
@@ -6393,7 +6421,138 @@ var ROOMS = {
                 "teaching_station": true,
                 "teaching_station_junior": false
             }
-        }]
+        },
+        {
+            "type": "room",
+            "id": "MY150",
+            "attributes": {
+                "bldg": "MY",
+                "room": "150",
+                "desc": "150 ",
+                "capacity": 468
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY315",
+            "attributes": {
+                "bldg": "MY",
+                "room": "315",
+                "desc": "315 ",
+                "capacity": 72
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY320",
+            "attributes": {
+                "bldg": "MY",
+                "room": "320",
+                "desc": "320 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY330",
+            "attributes": {
+                "bldg": "MY",
+                "room": "330",
+                "desc": "330 ",
+                "capacity": 72
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY350",
+            "attributes": {
+                "bldg": "MY",
+                "room": "350",
+                "desc": "350 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY360",
+            "attributes": {
+                "bldg": "MY",
+                "room": "360",
+                "desc": "360 ",
+                "capacity": 100
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY370",
+            "attributes": {
+                "bldg": "MY",
+                "room": "370",
+                "desc": "370 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY380",
+            "attributes": {
+                "bldg": "MY",
+                "room": "380",
+                "desc": "380 ",
+                "capacity": 72
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY420",
+            "attributes": {
+                "bldg": "MY",
+                "room": "420",
+                "desc": "420 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY430",
+            "attributes": {
+                "bldg": "MY",
+                "room": "430",
+                "desc": "430 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY440",
+            "attributes": {
+                "bldg": "MY",
+                "room": "440",
+                "desc": "440 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY480",
+            "attributes": {
+                "bldg": "MY",
+                "room": "480",
+                "desc": "480 ",
+                "capacity": 36
+            }
+        },
+        {
+            "type": "room",
+            "id": "MY490",
+            "attributes": {
+                "bldg": "MY",
+                "room": "490",
+                "desc": "490 ",
+                "capacity": 36
+            }
+        }
+    ]
 };
 //# sourceMappingURL=rooms.js.map
 

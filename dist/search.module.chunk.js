@@ -104,7 +104,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/calendar/calendar-row/calendar-row.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"calendar-row\" *ngIf=\"room\">\n<div class=\"calendar-row\" *ngIf=\"room\">\n  <div class=\"room-detail name\">\n    {{room.id}}\n  </div>\n  <div class=\"room-detail capacity\">\n    {{room.capacity ? room.capacity : '-'}}\n  </div>\n  <div class=\"schedule hours\">\n    <ul class=\"calendar-list\" *ngIf=\"!isLoadingBookings; else loading\">\n      <div *ngFor=\"let hour of hours\">\n        <calendar-item\n          [booking]=\"getBookingForHour(date, hour | timestamp)\"\n          [hour]=\"hour\"\n          (selected)=\"reserveSelection($event)\"></calendar-item>\n      </div>\n    </ul>\n    <ng-template #loading>\n      <span class=\"loading\">Loading...</span>\n    </ng-template>\n  </div>\n<div>\n"
+module.exports = "<div class=\"calendar-row\" *ngIf=\"room\">\n  <div class=\"room-detail name\">\n    {{room.id}}\n  </div>\n  <div class=\"room-detail capacity\">\n    {{room.capacity ? room.capacity : '-'}}\n  </div>\n  <div class=\"schedule hours\">\n    <ul class=\"calendar-list\" *ngIf=\"!isLoadingBookings; else loading\">\n      <div *ngFor=\"let hour of hours\">\n        <calendar-item\n          [booking]=\"getBookingForHour(date, hour | timestamp)\"\n          [hour]=\"hour\"\n          (selected)=\"reserveSelection($event)\"></calendar-item>\n      </div>\n    </ul>\n    <ng-template #loading>\n      <span class=\"loading\">Loading...</span>\n    </ng-template>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -140,7 +140,7 @@ var CalendarRowComponent = /** @class */ (function () {
         // (i.e. bookings not yet queried)
         this.isLoadingBookings = false;
     }
-    CalendarRowComponent.prototype.ngOnInit = function () {
+    CalendarRowComponent.prototype.ngOnChanges = function () {
         this.queryRelatedBookings(this.room, this.date);
     };
     /**
